@@ -1,0 +1,36 @@
+# Introduction #
+
+Add your content here.
+Inline Code: `if (cmds.referenceQuery(str(x.text(0)), isNodeReferenced=True)) == True:`
+
+# Details #
+
+Add your content here.  Format your content with:
+  * Text in **bold** or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
+```
+#-----------PYQT UTF-8-------------------
+try:
+    _fromUtf8 = QtCore.QString.fromUtf8
+except AttributeError:
+    _fromUtf8 = lambda s: s
+#--------------Script Dir for UIs Loading UI---------------
+myScriptDir = cmds.internalVar(userScriptDir=True)
+uifile = myScriptDir+'FileManager.ui'
+form, base = PyQt4.uic.loadUiType(uifile)
+#--------------Initiating Class------------------------
+class FilesManager(base, form):
+    def __init__(self):
+        super(base,self).__init__()
+        self.setupUi(self)
+        self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
+        #QtCore.QObject.connect(self.treeWidget, QtCore.SIGNAL(_fromUtf8("customContextMenuRequested(QPoint)")), MainWindow.rightClick)
+        self.treeWidget.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.checkFiles()#<-------Updates TreeWidget
+	self.setWindowFlags(self.windowFlags() & ~QtCore.Qt.WindowStaysOnTopHint)
+	self.treeWidget.setFocusPolicy(QtCore.Qt.StrongFocus)
+	#self.treeWidget.grabKeyboard()
+    def keyPressEvent(self,event):
+	#QtGui.QWidget.keyPressEvent(self, event)
+```
